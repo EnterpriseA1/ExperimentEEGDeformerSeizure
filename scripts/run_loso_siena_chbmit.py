@@ -245,7 +245,7 @@ def worker(dataset, fold_index, arm, smoke=False, run_root=None, l2sp_lambda=0.0
     from pytorch_lightning.loggers import CSVLogger
     from torch.utils.data import DataLoader
     from models.model_handler import DLModel
-    from training.task import initialize_model_from_checkpoint
+    from Task import initialize_model_from_checkpoint
     from utils import EEGDataset, seed_worker
     protocol = json.loads((OUT / 'protocol.json').read_text())
     fold = protocol['folds'][dataset][fold_index]

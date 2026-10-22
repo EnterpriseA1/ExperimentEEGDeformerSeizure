@@ -13,10 +13,10 @@ The last two files are support utilities, not additional thesis experiments. Bou
 
 ## LOSO evaluation inside runners
 
-- Scratch/transfer Focal and surgical: shared worker in `training/loso.py`.
-- Baseline transfer: target worker in `training/baseline_transfer.py`.
-- CBCE: target worker in `training/cbce.py`.
-- Unified L2-SP: `training/l2sp.py` defaults to dev-only; `--evaluate-test` opts into shared-worker test evaluation.
+- Scratch/transfer Focal and surgical: shared worker in `scripts/run_loso_siena_chbmit.py`.
+- Baseline transfer: target worker in `scripts/run_baseline_transfer_loso.py`.
+- CBCE: target worker in `scripts/run_cbce_target_loso.py`.
+- Unified L2-SP: `scripts/run_l2sp_loso.py` defaults to dev-only; `--evaluate-test` opts into shared-worker test evaluation.
 
 LOSO workers write `test_predictions.npz` and `result.json` per fold. Their cache schema differs from the multi-model fixed-split cache accepted by `compute_metrics.py`; do not pass a raw LOSO cache to that CLI. The LOSO scorer imports the false-alarm helper from `evaluation.compute_metrics`.
 

@@ -17,7 +17,7 @@ import time
 import numpy as np
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from training import loso as common
+from scripts import run_loso_siena_chbmit as common
 OUT = ROOT / 'save_loso/cbce_target_ratio2_seed2024'
 BASE = ROOT / 'save_loso/baselines_transfer/common16_legacy_f16_seed2024'
 MODELS = ('Deformer','EEGNet','Conformer','TSception','EEGViT')
@@ -92,7 +92,7 @@ def freeze():
                 p+=int(y.sum());n+=len(y)-int(y.sum())
             b=beta_for_ratio(n,p)
             losses[d][fold['id']]=dict(class_counts=[n,p],beta=b,positive_negative_weight_ratio=weight_ratio(n,p,b))
-    code=['training/loso.py','models/model_handler.py','utils.py','training/task.py']
+    code=['scripts/run_loso_siena_chbmit.py','models/model_handler.py','utils.py','Task.py']
     protocol=dict(seed=2024,scope='CBCE target-only; no TUSZ pretraining',models=list(MODELS),
                   sources={m:source_record(m) for m in MODELS},folds=ref['folds'],epochs=common.EPOCHS,
                   fold_losses=losses,loss='effective-number weighted softmax CE gamma0, train-only beta calibrated to ratio2',
@@ -122,7 +122,7 @@ def worker(model_name, dataset, fold_index, arm):
     from pytorch_lightning.loggers import CSVLogger
     from torch.utils.data import DataLoader
     from models.model_handler import DLModel
-    from training.task import initialize_model_from_checkpoint
+    from Task import initialize_model_from_checkpoint
     from utils import EEGDataset, seed_worker
     reference = json.loads((common.OUT / 'protocol.json').read_text())
     fold = reference['folds'][dataset][fold_index]

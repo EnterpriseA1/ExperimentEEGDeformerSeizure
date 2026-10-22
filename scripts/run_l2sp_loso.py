@@ -17,7 +17,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from training import loso as common
+from scripts import run_loso_siena_chbmit as common
 
 
 def parse_args(argv=None):
@@ -82,7 +82,7 @@ def build_plan(args):
     key = hashlib.sha256(json.dumps(settings, sort_keys=True).encode()).hexdigest()[:16]
     output = ROOT / 'save_loso/l2sp_unified' / args.loss / key / args.run_id
     code = ['models/l2sp.py', 'models/model_handler.py', 'models/EEGDeformer.py',
-            'training/task.py', 'utils.py', 'training/loso.py', 'training/l2sp.py']
+            'Task.py', 'utils.py', 'scripts/run_loso_siena_chbmit.py', 'scripts/run_l2sp_loso.py']
     protocol = dict(settings, run_id=args.run_id, folds=folds,
                     code_sha256={f: sha256(ROOT / f) for f in code})
     return ref, indices, output, protocol

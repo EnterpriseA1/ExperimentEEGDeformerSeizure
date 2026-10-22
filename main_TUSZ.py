@@ -6,7 +6,7 @@
 # ==============================================================================
 from pathlib import Path
 import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from argparse import ArgumentParser
 import time
@@ -19,7 +19,7 @@ import numpy as np
 from utils import log2csv, ensure_path, log_command, log_run_manifest
 
 print(f"[{time.strftime('%H:%M:%S')}] กำลังโหลด PyTorch และโมเดล (ขั้นตอนนี้อาจใช้นานถ้ารันบน NAS)...")
-from training.task import TUSZ_train
+from Task import TUSZ_train
 
 print(f"[{time.strftime('%H:%M:%S')}] โหลดไลบรารีเสร็จสิ้น! เข้าสู่การตั้งค่า Parameters...")
 parser = ArgumentParser()

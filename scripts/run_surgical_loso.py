@@ -20,7 +20,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from training import loso as common
+from scripts import run_loso_siena_chbmit as common
 
 # Predeclared configurations. Everything not listed is frozen.
 CONFIGS = {
@@ -76,8 +76,8 @@ def main():
     run_root.mkdir(parents=True, exist_ok=True)
     with (run_root / 'queue.lock').open('a') as lock:
         fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
-        code = ['models/model_handler.py', 'training/task.py', 'utils.py',
-                'training/loso.py', 'training/surgical.py']
+        code = ['models/model_handler.py', 'Task.py', 'utils.py',
+                'scripts/run_loso_siena_chbmit.py', 'scripts/run_surgical_loso.py']
         protocol = dict(settings, folds=folds,
                         code_sha256={f: hashlib.sha256((ROOT / f).read_bytes()).hexdigest() for f in code})
         path = run_root / 'protocol.json'

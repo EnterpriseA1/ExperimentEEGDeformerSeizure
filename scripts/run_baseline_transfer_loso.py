@@ -21,7 +21,7 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from training import loso as common
+from scripts import run_loso_siena_chbmit as common
 
 OUT = ROOT / 'save_loso/baselines_transfer/common16_legacy_f16_seed2024'
 MODELS = ('EEGNet', 'Conformer', 'TSception', 'EEGViT')
@@ -138,7 +138,7 @@ def pretrain(model):
     if log.exists():
         select_source(model)  # Reject incomplete pretraining instead of creating run_2.
         return
-    command = [sys.executable, '-u', 'training/train_tusz.py', '--dataset', 'TUSZ', '--model', model,
+    command = [sys.executable, '-u', 'main_TUSZ.py', '--dataset', 'TUSZ', '--model', model,
                '--num-chan', '16', '--channel-subset', 'common16', '--num-time', '800', '--sampling-rate', '200',
                '--max-epoch', '20', '--batch-size', '128', '--lr', '6e-4', '--weight-decay', '1e-5',
                '--dropout', '0.35', '--random-seed', '2024', '--mixed-precision', '0', '--gpu', '0',
@@ -159,7 +159,7 @@ def worker(model_name, dataset, fold_index):
     from pytorch_lightning.loggers import CSVLogger
     from torch.utils.data import DataLoader
     from models.model_handler import DLModel
-    from training.task import initialize_model_from_checkpoint
+    from Task import initialize_model_from_checkpoint
     from utils import EEGDataset, seed_worker
     reference = json.loads((common.OUT / 'protocol.json').read_text())
     fold = reference['folds'][dataset][fold_index]

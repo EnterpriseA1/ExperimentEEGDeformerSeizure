@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
-from training import loso as common
+from scripts import run_loso_siena_chbmit as common
 OUT=ROOT/'reports/l2sp_test_20260929'
 
 def main():

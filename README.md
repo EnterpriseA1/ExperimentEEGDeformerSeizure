@@ -8,7 +8,8 @@ Training, evaluation and statistical analysis for six EEG seizure-detection expe
 |---|---|
 | `prepare_dataset/` | TUSZ preprocessing and role-free CHB-MIT/Siena cohorts |
 | `models/` | Deformer, EEGNet, TSception, Conformer, EEGViT, losses and L2-SP |
-| `training/` | Fixed-split TUSZ and patient-disjoint LOSO experiment runners |
+| `main_TUSZ.py`, `Task.py` | TUSZ entry point and shared training/initialization logic |
+| `scripts/` | Patient-disjoint LOSO experiment runners |
 | `evaluation/` | Checkpoint predictions, window metrics and historical L2-SP evaluation |
 | `analysis/` | Optional statistical comparisons supporting reported tables |
 | `docs/` | Experiment map, environment and validation notes |
@@ -30,21 +31,21 @@ python -m pip install -r requirements.txt
 
 | Experiment | Main entry point |
 |---|---|
-| TUSZ architecture comparison, ten seeds | `training/train_tusz.py` |
-| CHB-MIT/Siena scratch versus transfer LOSO | `training/loso.py` |
-| Baseline transfer LOSO | `training/baseline_transfer.py` |
-| Target Focal versus CBCE | `training/loso.py`, `training/cbce.py` |
-| L2-SP and lambda controls | `training/l2sp.py` |
-| Surgical early-layer fine-tuning | `training/surgical.py` |
+| TUSZ architecture comparison, ten seeds | `main_TUSZ.py` |
+| CHB-MIT/Siena scratch versus transfer LOSO | `scripts/run_loso_siena_chbmit.py` |
+| Baseline transfer LOSO | `scripts/run_baseline_transfer_loso.py` |
+| Target Focal versus CBCE | `scripts/run_loso_siena_chbmit.py`, `scripts/run_cbce_target_loso.py` |
+| L2-SP and lambda controls | `scripts/run_l2sp_loso.py` |
+| Surgical early-layer fine-tuning | `scripts/run_surgical_loso.py` |
 
 TUSZ uses **window-level metrics per seed**, summarized across seeds on the same held-out eval cohort. CHB-MIT/Siena use **window metrics per held-out patient**, summarized across LOSO folds. A4 is a tuned Deformer configuration, not transfer fine-tuning.
 
 Run commands from the repository root. Entry points support `--help`:
 
 ```bash
-python training/train_tusz.py --help
-python training/loso.py --help
-python training/l2sp.py --help
+python main_TUSZ.py --help
+python scripts/run_loso_siena_chbmit.py --help
+python scripts/run_l2sp_loso.py --help
 python evaluation/predict.py --help
 ```
 

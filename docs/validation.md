@@ -12,9 +12,13 @@ These checks were run during release preparation. The test suite and its configu
 - The preparation-time test suite covered loss/weight calibration, initialization, freezing, L2-SP synthetic CPU training/resume, samplers, metrics and LOSO protocols.
 - All Python source parses; no machine-specific home/NAS paths or credentials were found in published source/docs.
 
+## Layout recheck
+
+After restoring `main_TUSZ.py` and `Task.py` at the root and moving LOSO runners into `scripts/`, the historical test suite was run in a temporary copy outside this repository with imports updated for the new paths: **85 passed, 2 skipped**. All 13 CLI help checks and analysis/evaluation package imports passed again. Tests remain excluded from the published files. Python AST comparison confirmed only the intended module/path substitutions; model, preprocessing, statistics and shared utility source remained byte-identical. No full EEG training was rerun.
+
 ## Fixes made during release preparation
 
-- Relocated training code into `training/`, updated imports, subprocess commands, root resolution and code-hash references.
+- Preserved the original Deformer layout with `main_TUSZ.py` and `Task.py` at the root, and grouped LOSO runners in `scripts/`. Updated imports, subprocess commands, root resolution and code-hash references.
 - Removed model-import side effects that overwrote `CUDA_VISIBLE_DEVICES`/`CUDA_DEVICE_ORDER`; the caller now controls device selection. Model forward computations were not changed.
 - Prediction output accepts a filename in the current directory as well as a nested output path.
 - TUSZ training and prediction use the same project-checkpoint loading compatibility setting as the existing LOSO runners for PyTorch 2.6+.
