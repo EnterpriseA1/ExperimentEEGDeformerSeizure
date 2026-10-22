@@ -11,19 +11,17 @@ Training, evaluation and statistical analysis for six EEG seizure-detection expe
 | `training/` | Fixed-split TUSZ and patient-disjoint LOSO experiment runners |
 | `evaluation/` | Checkpoint predictions, window metrics and historical L2-SP evaluation |
 | `analysis/` | Optional statistical comparisons supporting reported tables |
-| `tests/` | Unit, synthetic integration and data-contract checks |
 | `docs/` | Experiment map, environment and validation notes |
 | `utils.py` | Shared data loading, normalization, sampling and provenance |
 
-## Install and test
+## Installation
 
 Use Python 3.10 on Linux. The runners use POSIX file locks. Create an isolated environment and choose a PyTorch CPU/CUDA build appropriate for your hardware.
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate
-python -m pip install -r requirements-dev.txt
-python -m pytest -q
+python -m pip install -r requirements.txt
 ```
 
 `requirements.txt` pins direct runtime dependencies matching the validation environment. It is not a lockfile of every transitive package. The old environment list is retained only for reference in `docs/requirements-original.txt`. See [validation notes](docs/validation.md) for test coverage and limitations.

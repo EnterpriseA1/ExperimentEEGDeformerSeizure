@@ -2,12 +2,14 @@
 
 ## Release checks
 
+These checks were run during release preparation. The test suite and its configuration are excluded from the current source distribution; the results below remain a historical validation record.
+
 - Full pytest suite: **85 passed, 2 skipped**. The skipped checks need saved historical CBCE outputs or explicit opt-in CPU training with original checkpoint/protocol inputs.
 - All 13 public command-line entry points returned successfully with `--help` after relocation.
 - Analysis modules and historical L2-SP evaluator modules import successfully as packages.
 - All five thesis architectures pass finite CPU forward and strict state reload checks for both 16 and 20 channels.
 - A real synthetic EEGNet Lightning checkpoint passes the public prediction-to-cache-to-metric-report path, preserving the dev threshold, labels and recording seams.
-- Existing tests cover loss/weight calibration, initialization, freezing, L2-SP synthetic CPU training/resume, samplers, metrics and LOSO protocols.
+- The preparation-time test suite covered loss/weight calibration, initialization, freezing, L2-SP synthetic CPU training/resume, samplers, metrics and LOSO protocols.
 - All Python source parses; no machine-specific home/NAS paths or credentials were found in published source/docs.
 
 ## Fixes made during release preparation
