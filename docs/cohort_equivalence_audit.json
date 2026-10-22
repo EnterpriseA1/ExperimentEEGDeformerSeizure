@@ -1,0 +1,44 @@
+{
+  "cohorts": {
+    "Siena": {
+      "case_order_exact": true,
+      "folds_exact": true,
+      "cases": 14,
+      "folds": 14,
+      "signal_and_label_methods_unchanged": true
+    },
+    "CHBMIT": {
+      "case_order_exact": true,
+      "folds_exact": true,
+      "cases": 24,
+      "folds": 23,
+      "signal_and_label_methods_unchanged": true
+    }
+  },
+  "records": [
+    {
+      "dataset": "Siena",
+      "case": "PN00",
+      "record": "PN00-4.edf",
+      "windows": 525,
+      "positive_windows": 19,
+      "float16_common16_signals_exact": true,
+      "labels_exact": true,
+      "start_samples_exact": true,
+      "seams_exact": true,
+      "sha256": "f05a0e0bb41f56fa0a626600f9befdb89af5174fad3053eba2084ce6ac000c2c"
+    },
+    {
+      "dataset": "CHBMIT",
+      "case": "chb02",
+      "record": "chb02_16.edf",
+      "windows": 239,
+      "positive_windows": 21,
+      "float16_common16_signals_exact": true,
+      "labels_exact": true,
+      "start_samples_exact": true,
+      "seams_exact": true,
+      "sha256": "730081f2bcca38395b96a07d474452273dc5a9718295abaf591fe2e2f1a278a2"
+    }
+  ]
+}

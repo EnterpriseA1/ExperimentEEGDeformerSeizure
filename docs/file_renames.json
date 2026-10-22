@@ -1,0 +1,11 @@
+{
+  "main_TUSZ.py": "training/train_tusz.py",
+  "Task.py": "training/task.py",
+  "run_l2sp_loso.py": "training/l2sp.py",
+  "run_surgical_loso.py": "training/surgical.py",
+  "scripts/run_loso_siena_chbmit.py": "training/loso.py",
+  "scripts/run_baseline_transfer_loso.py": "training/baseline_transfer.py",
+  "scripts/run_cbce_target_loso.py": "training/cbce.py",
+  "reports/l2sp_unified_runner.md": "docs/l2sp_runner.md",
+  "CBCR License": "LICENSE"
+}

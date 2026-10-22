@@ -1,0 +1,35 @@
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.venv/
+.env
+.env.*
+!.env.example
+# Datasets and generated training/evaluation artifacts
+/data_processed/
+/save/
+/save_*/
+*.edf
+*.pkl
+*.npy
+*.npz
+*.ckpt
+*.pt
+*.pth
+*.tfevents.*
+*.log
+/evaluation/*.csv
+/analysis/*.csv
+/reports/
+/raw_data/
+*.hdf
+# Local backups and downloads
+*.orig
+*.bak
+wget-log*
+*.zip
+*.tar
+*.tar.gz
+.DS_Store
